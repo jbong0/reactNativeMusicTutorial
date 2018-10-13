@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Card, Text, Button } from 'react-native-elements'
+import { CardList } from '../components/CardList'
 
 export default class AlbumsScreen extends React.Component {
   static navigationOptions = {
@@ -37,30 +38,17 @@ export default class AlbumsScreen extends React.Component {
     }
   }
 
-  // function that maps through array of objects
-  renderAlbums(){
-    const { albums } = this.state;
-
-    return albums.map((album,index) => {
-      return(
-        <Card
-          title={ album.title }
-          image={{uri: album.image}} >
-          <Button
-          icon={{name: 'code'}}
-          backgroundColor='#03A9F4'
-          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          title='VIEW NOW' />
-        </Card>
-      )
-    })
-  }
   render() {
     const { albums } = this.state
 
     return (
       <ScrollView style={styles.container}>
-        { this.renderAlbums() }
+        <CardList data={ albums }
+                  imageKey={'image'}
+                  titleKey={'title'}
+                  buttonText={'Click to view details'}
+                  >
+        </CardList>
       </ScrollView>
     );
   }
